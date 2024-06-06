@@ -38,7 +38,12 @@ okhttp = "4.12.0"
 
 # gson
 gson = "2.10.1"
+
+# datastore
 datastorePreferences = "1.1.1"
+
+# room
+room = "2.6.1"
 
 [libraries]
 # core
@@ -80,6 +85,11 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 # datastore
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
+
+# room
+room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

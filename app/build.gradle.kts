@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.navigationSafeargs)
+    alias(libs.plugins.kotlinParcelize)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
@@ -97,6 +98,11 @@ dependencies {
 
     // datastore
     implementation(libs.androidx.datastore)
+
+    // room
+    implementation(libs.room.runtime)
+    implementation(libs.room.compiler)
+    ksp(libs.room.compiler)
 
     // testing
     testImplementation(libs.junit)
