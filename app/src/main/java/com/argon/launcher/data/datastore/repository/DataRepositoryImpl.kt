@@ -1,9 +1,10 @@
-package com.argon.launcher.data.datastore
+package com.argon.launcher.data.datastore.repository
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import com.argon.launcher.domain.repository.DatastoreRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -11,8 +12,8 @@ import java.io.IOException
 
 import javax.inject.Inject
 
-class DataRepoImpl @Inject constructor(private val prefsDataStore: DataStore<Preferences>) :
-    DataStoreRepo {
+class DataRepositoryImpl @Inject constructor(private val prefsDataStore: DataStore<Preferences>) :
+    DatastoreRepository {
 
     override suspend fun <T> putValue(key: Preferences.Key<T>, value: T) {
         prefsDataStore.edit {

@@ -1,14 +1,14 @@
 package com.argon.launcher.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.argon.launcher.data.entitiy.App
+import com.argon.launcher.data.entitiy.AppEntity
 
 
 interface AppRepository {
 
-    suspend fun getApps(includeHidden: Boolean = false): LiveData<MutableList<App>>
+    suspend fun getApps(includeHidden: Boolean = false): LiveData<MutableList<AppEntity>>
 
-    suspend fun getOnlyHiddenApps(): LiveData<MutableList<App>>
+    suspend fun getOnlyHiddenApps(): LiveData<MutableList<AppEntity>>
 
     suspend fun isAppsInDB(): Int
 
@@ -16,7 +16,7 @@ interface AppRepository {
 
     suspend fun deleteApp(packageName: String)
 
-    suspend fun insert(app: App)
+    suspend fun insert(appEntity: AppEntity)
 
     suspend fun hideApps(ids: IntArray)
 

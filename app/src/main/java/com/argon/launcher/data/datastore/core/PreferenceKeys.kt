@@ -1,4 +1,4 @@
-package com.argon.launcher.data.datastore
+package com.argon.launcher.data.datastore.core
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 

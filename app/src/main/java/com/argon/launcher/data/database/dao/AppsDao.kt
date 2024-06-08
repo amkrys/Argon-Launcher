@@ -5,25 +5,25 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.argon.launcher.data.entitiy.App
+import com.argon.launcher.data.entitiy.AppEntity
 
 @Dao
 interface AppsDao {
 
     @Query("SELECT * from apps WHERE isHidden =:isHidden  ORDER BY label COLLATE NOCASE ASC")
-    fun getVisibleApps(isHidden: Boolean): LiveData<MutableList<App>>
+    fun getVisibleApps(isHidden: Boolean): LiveData<MutableList<AppEntity>>
 
     @Query("SELECT * from apps ORDER BY label COLLATE NOCASE ASC")
-    fun getAllApps(): LiveData<MutableList<App>>
+    fun getAllApps(): LiveData<MutableList<AppEntity>>
 
     @Query("SELECT * from apps WHERE isHidden =:isHidden ORDER BY label COLLATE NOCASE ASC")
-    fun getOnlyHiddenApps(isHidden: Boolean): LiveData<MutableList<App>>
+    fun getOnlyHiddenApps(isHidden: Boolean): LiveData<MutableList<AppEntity>>
 
     @Query("SELECT COUNT(*) from apps")
     fun isAppsInDB(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(app: App)
+    suspend fun insert(appEntity: AppEntity)
 
     @Query("UPDATE apps SET isHidden = :isHidden where id IN(:ids)")
     suspend fun hideApps(ids: IntArray, isHidden: Boolean)

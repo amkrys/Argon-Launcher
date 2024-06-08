@@ -3,7 +3,7 @@ package com.argon.launcher.data.database.repository
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.argon.launcher.data.database.dao.AppsDao
-import com.argon.launcher.data.entitiy.App
+import com.argon.launcher.data.entitiy.AppEntity
 import com.argon.launcher.domain.repository.AppRepository
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ class AppRepositoryImpl @Inject constructor(
     private val appsDao: AppsDao
 ): AppRepository {
 
-    override suspend fun getApps(includeHidden: Boolean): LiveData<MutableList<App>> {
+    override suspend fun getApps(includeHidden: Boolean): LiveData<MutableList<AppEntity>> {
         return if (includeHidden) {
             appsDao.getAllApps()
         } else {
@@ -19,7 +19,7 @@ class AppRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getOnlyHiddenApps(): LiveData<MutableList<App>> {
+    override suspend fun getOnlyHiddenApps(): LiveData<MutableList<AppEntity>> {
         return appsDao.getOnlyHiddenApps(true)
     }
 
@@ -38,8 +38,8 @@ class AppRepositoryImpl @Inject constructor(
     }
 
     @WorkerThread
-    override suspend fun insert(app: App) {
-        appsDao.insert(app)
+    override suspend fun insert(appEntity: AppEntity) {
+        appsDao.insert(appEntity)
     }
 
     @WorkerThread
