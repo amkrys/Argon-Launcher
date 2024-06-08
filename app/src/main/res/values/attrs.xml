@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SlidingPanelLayout">
+        <attr name="sPanelHeight" format="dimension" />
+        <attr name="sShadowHeight" format="dimension" />
+        <attr name="sParallaxOffset" format="dimension" />
+        <attr name="sFadeColor" format="color" />
+        <attr name="sFlingVelocity" format="integer" />
+        <attr name="sDragView" format="reference" />
+        <attr name="sScrollableView" format="reference" />
+        <attr name="sOverlay" format="boolean"/>
+        <attr name="sClipPanel" format="boolean"/>
+        <attr name="sAnchorPoint" format="float" />
+        <attr name="sInitialState" format="enum">
+            <enum name="expanded" value="0" />
+            <enum name="collapsed" value="1" />
+            <enum name="anchored" value="2" />
+            <enum name="hidden" value="3" />
+        </attr>
+        <attr name="sScrollInterpolator" format="reference" />
+    </declare-styleable>
+
+</resources>
