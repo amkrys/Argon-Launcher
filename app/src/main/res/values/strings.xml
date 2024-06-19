@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Argon Launcher</string>
+    <string name="search_hint">Search for App</string>
 </resources>
