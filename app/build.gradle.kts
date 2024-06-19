@@ -6,11 +6,11 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.navigationSafeargs)
     alias(libs.plugins.kotlinParcelize)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinKapt)
 }
 
 val prop = Properties().apply {
@@ -53,7 +53,7 @@ android {
         buildConfig = true
     }
     hilt {
-        enableAggregatingTask = true
+        enableAggregatingTask = false
     }
     lint {
         abortOnError = false
@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.javapoet)
 
     // hilt
     implementation(libs.hilt)
@@ -100,8 +101,8 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     // room
+    implementation(libs.room)
     implementation(libs.room.runtime)
-    implementation(libs.room.compiler)
     ksp(libs.room.compiler)
 
     // testing
