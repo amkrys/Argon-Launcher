@@ -5,12 +5,14 @@ import com.argon.launcher.domain.repository.AppRepository
 import com.argon.launcher.util.AppListUtil
 import com.argon.launcher.util.BitmapUtil
 import com.argon.launcher.util.StorageUtil
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+@Module
 @InstallIn(SingletonComponent::class)
 object UtilModule {
 
