@@ -1,8 +1,9 @@
-package com.argon.launcher.util
+package com.argon.launcher.util.helper
 
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.annotation.WorkerThread
+import com.argon.launcher.util.extension.getIconFolderPath
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

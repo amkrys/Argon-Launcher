@@ -2,9 +2,9 @@ package com.argon.launcher.di
 
 import android.content.Context
 import com.argon.launcher.domain.repository.AppRepository
-import com.argon.launcher.util.AppListUtil
-import com.argon.launcher.util.BitmapUtil
-import com.argon.launcher.util.StorageUtil
+import com.argon.launcher.util.helper.AppListUtil
+import com.argon.launcher.util.helper.BitmapUtil
+import com.argon.launcher.util.helper.StorageUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.argon.launcher.util
+package com.argon.launcher.util.constant
 
 object Constants {
 

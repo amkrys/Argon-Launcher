@@ -1,4 +1,4 @@
-package com.argon.launcher.util
+package com.argon.launcher.util.helper
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

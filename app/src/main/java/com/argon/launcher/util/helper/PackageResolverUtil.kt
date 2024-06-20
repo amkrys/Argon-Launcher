@@ -1,9 +1,10 @@
-package com.argon.launcher.util
+package com.argon.launcher.util.helper
 
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.annotation.WorkerThread
 import com.argon.launcher.data.model.AppInfo
+import com.argon.launcher.util.extension.toLowerCased
 
 object PackageResolverUtil {
 

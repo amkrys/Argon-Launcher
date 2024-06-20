@@ -1,4 +1,4 @@
-package com.argon.launcher.util
+package com.argon.launcher.util.helper
 
 import android.content.Context
 import android.content.pm.PackageManager

@@ -3,7 +3,7 @@ package com.argon.launcher.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.argon.launcher.util.dataStorePreferences
+import com.argon.launcher.util.extension.dataStorePreferences
 import com.argon.launcher.data.datastore.repository.DataRepositoryImpl
 import com.argon.launcher.domain.repository.DatastoreRepository
 import dagger.Module

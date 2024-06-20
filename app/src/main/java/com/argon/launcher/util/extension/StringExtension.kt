@@ -1,4 +1,4 @@
-package com.argon.launcher.util
+package com.argon.launcher.util.extension
 
 import java.util.Locale
 
