@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.argon.launcher.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 class LauncherViewModel: ViewModel() {
@@ -15,12 +17,14 @@ class LauncherViewModel: ViewModel() {
     private val _wallpaperLiveData = MutableLiveData<Drawable>()
     val wallpaperLiveData: LiveData<Drawable> get() = _wallpaperLiveData
 
-    fun updateCurrentWallpaper(context: Context) {
-        try {
-            val wallpaperManager = WallpaperManager.getInstance(context)
-            _wallpaperLiveData.value = wallpaperManager.drawable
-        } catch (e: Exception) {
-            _wallpaperLiveData.value = ContextCompat.getDrawable(context, R.drawable.default_wallpaper)
+    suspend fun updateCurrentWallpaper(context: Context) {
+        withContext(Dispatchers.IO) {
+            try {
+                val wallpaperManager = WallpaperManager.getInstance(context)
+                _wallpaperLiveData.postValue(wallpaperManager.drawable)
+            } catch (e: Exception) {
+                _wallpaperLiveData.postValue(ContextCompat.getDrawable(context, R.drawable.default_wallpaper))
+            }
         }
     }
 }

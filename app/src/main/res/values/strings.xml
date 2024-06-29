@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Argon Launcher</string>
     <string name="search_hint">Search for App</string>
+    <string name="ask_for_permission_title">Storage Permission</string>
+    <string name="ask_for_permission_message">The storage permission is required to access the wallpaper</string>
 </resources>
