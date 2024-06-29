@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:behavior_hideable="true"
-        app:behavior_peekHeight="@dimen/_50sdp"
+        app:behavior_peekHeight="@dimen/_60sdp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
         <ImageView
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_35sdp"
             android:background="@drawable/bg_corner_grey_25dp"
             android:gravity="center_vertical"
             android:inputType="text"

@@ -8,6 +8,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,11 +23,13 @@ import com.argon.launcher.BuildConfig
 import com.argon.launcher.R
 import com.argon.launcher.databinding.ActivityLauncherBinding
 import com.argon.launcher.util.extension.log
-import com.argon.launcher.util.widget.view.alert
+import com.argon.launcher.util.extension.openStatusBar
+import com.argon.launcher.util.widget.alert.alert
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.abs
 
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
@@ -36,6 +41,10 @@ class LauncherActivity : AppCompatActivity() {
 
     private var askedForPermission = false
 
+    private val swipeDistanceThreshold = 100
+    private val swipeVelocityThreshold = 100
+
+    private lateinit var gestureDetector: GestureDetector
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -58,6 +67,7 @@ class LauncherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityLauncherBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initGestureDetector()
         initBottomSheet()
         initMainObservers()
     }
@@ -109,6 +119,33 @@ class LauncherActivity : AppCompatActivity() {
         }
     }
 
+    private fun initGestureDetector() {
+        gestureDetector = GestureDetector(this@LauncherActivity, object: SimpleOnGestureListener() {
+            override fun onFling(
+                e1: MotionEvent?,
+                e2: MotionEvent,
+                velocityX: Float,
+                velocityY: Float
+            ): Boolean {
+                var result = false
+                if (e1 != null) {
+                    val diffY = e2.y - e1.y
+                    if (abs(diffY) > swipeDistanceThreshold && abs(velocityY) > swipeVelocityThreshold) {
+                        if (diffY > 0) {
+                            log("onSwipeDown")
+                            openStatusBar()
+                        } else {
+                            log("onSwipeUp")
+                            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                        }
+                        result = true
+                    }
+                }
+                return result
+            }
+        })
+    }
+
     private fun initBottomSheet() = with(binding) {
         bottomSheetBehavior = BottomSheetBehavior.from(includedBottomSheet.clBottomSheet)
         bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -125,6 +162,14 @@ class LauncherActivity : AppCompatActivity() {
     private fun initMainObservers() = with(viewModel) {
         wallpaperLiveData.observe(this@LauncherActivity) {
             binding.main.background = it
+        }
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        return if (gestureDetector.onTouchEvent(event)) {
+            true
+        } else {
+            super.onTouchEvent(event)
         }
     }
 

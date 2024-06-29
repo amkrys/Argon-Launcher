@@ -1,4 +1,4 @@
-package com.argon.launcher.util.widget.view
+package com.argon.launcher.util.widget.alert
 
 import android.content.Context
 import android.view.Gravity
