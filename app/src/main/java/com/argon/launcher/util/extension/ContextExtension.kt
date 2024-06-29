@@ -25,3 +25,8 @@ fun Context.log(message: String?) {
     if (BuildConfig.DEBUG) message?.let { Log.e(this::class.java.simpleName, it) }
 }
 
+fun Context.openStatusBar() {
+    val service = getSystemService("statusbar")
+    val statusBarManager = Class.forName("android.app.StatusBarManager")
+    statusBarManager.getMethod("expandNotificationsPanel").invoke(service)
+}
