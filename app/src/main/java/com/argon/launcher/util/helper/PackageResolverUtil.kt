@@ -2,8 +2,9 @@ package com.argon.launcher.util.helper
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.annotation.WorkerThread
-import com.argon.launcher.data.model.AppInfo
+import com.argon.launcher.domain.model.AppInfo
 import com.argon.launcher.util.extension.toLowerCased
 
 object PackageResolverUtil {
@@ -16,7 +17,15 @@ object PackageResolverUtil {
         val mainIntent = Intent(Intent.ACTION_MAIN, null)
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER)
 
-        val list = packageManager.queryIntentActivities(mainIntent, 0)
+        val list = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            packageManager.queryIntentActivities(
+                mainIntent,
+                PackageManager.ResolveInfoFlags.of(0L)
+            )
+        } else {
+            packageManager.queryIntentActivities(mainIntent, 0)
+        }
+        
         val appInoList: MutableList<AppInfo> = ArrayList(list.size)
 
         list.forEach { resolveInfo ->

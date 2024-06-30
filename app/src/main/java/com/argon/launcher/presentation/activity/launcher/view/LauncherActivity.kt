@@ -1,4 +1,4 @@
-package com.argon.launcher.presentation.activity.launcher
+package com.argon.launcher.presentation.activity.launcher.view
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Intent
@@ -21,7 +21,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
 import com.argon.launcher.BuildConfig
 import com.argon.launcher.R
+import com.argon.launcher.data.model.AppUiModel
 import com.argon.launcher.databinding.ActivityLauncherBinding
+import com.argon.launcher.presentation.activity.launcher.adapter.AppsAdapter
 import com.argon.launcher.util.extension.log
 import com.argon.launcher.util.extension.openStatusBar
 import com.argon.launcher.util.widget.alert.alert
@@ -154,14 +156,21 @@ class LauncherActivity : AppCompatActivity() {
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
+                includedBottomSheet.ivThumbArrow.alpha = 1- slideOffset
             }
         })
+    }
+
+    private fun initAppDrawer(list: MutableList<AppUiModel>) = with(binding.includedBottomSheet.recycleView) {
+        adapter = AppsAdapter(list)
     }
 
     private fun initMainObservers() = with(viewModel) {
         wallpaperLiveData.observe(this@LauncherActivity) {
             binding.main.background = it
+        }
+        appListLiveData.observe(this@LauncherActivity) {
+            initAppDrawer(it)
         }
     }
 

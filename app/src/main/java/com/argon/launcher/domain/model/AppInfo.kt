@@ -1,4 +1,4 @@
-package com.argon.launcher.data.model
+package com.argon.launcher.domain.model
 
 import android.graphics.drawable.Drawable
 

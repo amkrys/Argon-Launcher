@@ -34,7 +34,7 @@ object UtilModule {
         appRepository: AppRepository,
         bitmapUtil: BitmapUtil,
         storageUtil: StorageUtil,
-        context: Context
+        @ApplicationContext context: Context
     ): AppListUtil {
         return AppListUtil(appRepository, bitmapUtil, storageUtil, context.packageManager, context)
     }

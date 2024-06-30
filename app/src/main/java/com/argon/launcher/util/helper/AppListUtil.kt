@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import androidx.annotation.WorkerThread
 import com.argon.launcher.data.entitiy.AppEntity
 import com.argon.launcher.domain.repository.AppRepository
+import com.argon.launcher.util.extension.getIconFolderPath
 import javax.inject.Inject
 
 class AppListUtil @Inject constructor(
@@ -24,7 +25,9 @@ class AppListUtil @Inject constructor(
                             storageUtil.saveBitmapToFile(it, appInfo.label)
                             appRepository.insert(
                                 AppEntity(
-                                    packageName = appInfo.packageName, label = appInfo.label
+                                    packageName = appInfo.packageName,
+                                    icon = context.getIconFolderPath(appInfo.label),
+                                    label = appInfo.label
                                 )
                             )
                         }
@@ -46,7 +49,9 @@ class AppListUtil @Inject constructor(
                     storageUtil.saveBitmapToFile(it, appInfo.label)
                     appRepository.insert(
                         AppEntity(
-                            packageName = appInfo.packageName, label = appInfo.label
+                            packageName = appInfo.packageName,
+                            icon = context.getIconFolderPath(appInfo.label),
+                            label = appInfo.label
                         )
                     )
                 }
