@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.argon.launcher.BR
 import com.argon.launcher.data.model.AppUiModel
 import com.argon.launcher.databinding.ItemAppBinding
+import com.argon.launcher.util.widget.edgefactory.BaseViewHolder
 
 class AppsAdapter(private val list: MutableList<AppUiModel>): RecyclerView.Adapter<AppsAdapter.AppViewHolder>() {
 
-    class AppViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AppViewHolder(binding: ViewDataBinding) : BaseViewHolder(binding.root) {
         var binding: ViewDataBinding
             internal set
 

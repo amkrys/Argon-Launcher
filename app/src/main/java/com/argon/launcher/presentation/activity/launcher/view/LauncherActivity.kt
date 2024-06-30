@@ -27,6 +27,7 @@ import com.argon.launcher.presentation.activity.launcher.adapter.AppsAdapter
 import com.argon.launcher.util.extension.log
 import com.argon.launcher.util.extension.openStatusBar
 import com.argon.launcher.util.widget.alert.alert
+import com.argon.launcher.util.widget.edgefactory.BaseEdgeEffectFactory
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -162,6 +163,7 @@ class LauncherActivity : AppCompatActivity() {
     }
 
     private fun initAppDrawer(list: MutableList<AppUiModel>) = with(binding.includedBottomSheet.recycleView) {
+        edgeEffectFactory = BaseEdgeEffectFactory()
         adapter = AppsAdapter(list)
     }
 
