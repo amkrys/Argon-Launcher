@@ -84,7 +84,8 @@ dependencies {
     implementation(libs.navigation.ui)
 
     // dimens
-    implementation(libs.dimens)
+    implementation(libs.dimensSp)
+    implementation(libs.dimensDp)
 
     // glide
     implementation(libs.glide.transformations)

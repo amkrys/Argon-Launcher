@@ -70,7 +70,8 @@ navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", 
 navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", name = "navigation-ui", version.ref = "navigation" }
 
 # dimens
-dimens = { module = "com.intuit.sdp:sdp-android", version.ref = "dimens" }
+dimensSp = { module = "com.intuit.ssp:ssp-android", version.ref = "dimens" }
+dimensDp = { module = "com.intuit.sdp:sdp-android", version.ref = "dimens" }
 
 # glide
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
